@@ -1,19 +1,21 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
-    <link rel="stylesheet" href="/css/test.css">
-  </head>
-  <body>
-    <ul id="messages"></ul>
-    <form id="message" action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
-    <form id="nickname" action="">
-      <input id="n" autocomplete="off" /><button>Nick</button>
-    </form>
+    <title>Chat Payment</title>
+    <link rel="stylesheet" href="dist/css/chat.css">
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+  </head>
+  <body>
+    <div class="chat-box">
+      <div class="chat-header"></div>
+      <ul id="messages"></ul>
+      <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+    </div>
+
     <script>
       var socket = null;
       $('#message').submit(function(){
