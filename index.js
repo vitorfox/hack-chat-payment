@@ -3,7 +3,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongo = require('mongodb').MongoClient;
 
-var users = [];
+var users_online = [];
 mongo.connect('mongodb://127.0.0.1/chat', function(err, db) {
     app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
@@ -19,14 +19,21 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db) {
     });
 
     io.on('connection', function(socket){
+        var session_id = socket.id;
         socket.on('chat message', function(msg){
             io.emit('chat message', msg);
         });
-        socket.on('set nickname', function(nickname) {
-            console.log('nickname received', nickname);
-            users.push(nickname);
-            console.log(users);
+        socket.on('set nickname', function(data) {
+            console.log('nickname received', data.nickname);
+            var users = db.collection("users");
+            users.find({ "nickname": data.nickname }).count(function(err, count){
+                if (count == 0) {
+                    users.insert({ "nickname": data.nickname });
+                }
+                users_online.push({ "nickname": data.nickname, "session_id": session_id });
+            });
         });
+
         socket.on('disconnect', function () {
             //socket.emit('disconnected');
             console.log('disconnected. should remove user');

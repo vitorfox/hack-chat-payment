@@ -15,20 +15,22 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      var socket = io();
+      var socket = null;
       $('#message').submit(function(){
         socket.emit('chat message', $('#m').val());
         $('#m').val('');
         return false;
       });
       $('#nickname').submit(function(){
-        socket.emit('set nickname', $('#n').val());
+        socket = io();
+        socket.emit('set nickname', { "nickname": $('#n').val() });
         $('#nickname').hide();
+        socket.on('chat message', function(msg){
+            $('#messages').append($('<li>').text(msg));
+        });
         return false;
       });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
+
     </script>
   </body>
 </html>
