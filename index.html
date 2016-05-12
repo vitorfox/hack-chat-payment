@@ -11,26 +11,30 @@
     <div class="chat-box">
       <div class="chat-header"></div>
       <ul id="messages"></ul>
-      <form action="">
-        <input id="m" autocomplete="off" /><button>Send</button>
-      </form>
+        <form id="message" action="">
+            <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
+        <form id="nickname" action="">
+            <input id="n" autocomplete="off" /><button>Nick</button>
+        </form>
     </div>
 
     <script>
       var socket = null;
       $('#message').submit(function(){
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
+            socket.emit('chat message', $('#m').val());
+            $('#m').val('');
+            return false;
       });
+
       $('#nickname').submit(function(){
-        socket = io();
-        socket.emit('set nickname', { "nickname": $('#n').val() });
-        $('#nickname').hide();
-        socket.on('chat message', function(msg){
-            $('#messages').append($('<li>').text(msg));
-        });
-        return false;
+            socket = io();
+            socket.emit('set nickname', { "nickname": $('#n').val() });
+            $('#nickname').hide();
+            socket.on('chat message', function(msg){
+                $('#messages').append($('<li>').text(msg));
+            });
+            return false;
       });
 
     </script>
