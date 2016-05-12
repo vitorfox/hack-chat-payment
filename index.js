@@ -7,7 +7,7 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/css/*', function(req, res){
+app.get('/dist/css/*', function(req, res){
   res.sendFile(__dirname + req.path);
 });
 
