@@ -102,7 +102,7 @@ var socket = null;
 
   $("body").on("click", "#pay", function(e){
            e.preventDefault();
-           socket.emit('send payment', "Pagamento efetuado com sucesso!");
+           socket.emit('send payment', "Pagamento efetuado!");
      $('.payment-bar .payment-header .title').html("<div class='loader'>Loading...</div>");
            $('.payment-bar .payment-content').addClass("hide");
   });

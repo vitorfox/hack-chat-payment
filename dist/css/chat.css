@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,300italic);
 .hide {
   display: none; }
 
@@ -91,20 +91,20 @@
   position: relative;
   border-bottom: 1px solid rgba(137, 137, 137, 0.33);
   padding: 5px;
-  height: 35px; }
+  height: 45px; }
 
 .payment-header .title {
   text-align: center;
   font-size: 14px;
-  padding-top: 4px; }
+  padding-top: 6px; }
 
 .payment-bullets {
   color: #333;
   position: absolute;
-  top: 0;
+  top: 5px;
   right: 10px;
-  height: 35px;
-  width: 35px;
+  height: 33px;
+  width: 33px;
   border: 0;
   border-radius: 100%;
   text-indent: -9999px;
@@ -114,7 +114,8 @@
 .payment-title {
   font-size: 14px;
   float: left;
-  padding-top: 5px; }
+  padding-top: 5px;
+  padding-left: 10px; }
 
 .payment-content {
   background: #ffffff;
@@ -141,7 +142,9 @@
 .payment-rules {
   font-size: 12px;
   text-align: center;
-  padding-top: 5px; }
+  padding-top: 5px;
+  font-style: italic;
+  color: rgba(137, 137, 137, 0.33); }
 
 .charge-icon {
   position: absolute;
