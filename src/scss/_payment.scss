@@ -1,0 +1,63 @@
+// PAYMENT
+
+.payment-bar {
+    background: $grey-0;
+}
+
+.payment-header {
+    font-size: 14px;
+    display: block;
+    background: $grey-0;
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid $grey-4;
+}
+
+.payment-header .title {
+    text-align: center;
+    font-size: 14px;
+}
+
+.payment-bolinhas {
+    color: #333;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.payment-title {
+    font-size: 14px;
+    float: left;
+    padding-top: 5px;
+}
+
+.payment-content {
+    background: $grey-0;
+    padding: 10px;
+}
+
+.payment-wrapper {
+    margin-bottom: 5px;
+}
+
+.payment-button {
+    background: $primary-green;
+    float: right;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    width: 100px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.payment-price {
+    font-size: 18px;
+    font-weight: bold;
+}
+.payment-rules {
+    font-size: 12px;
+    text-align: center;
+    padding-top: 5px;
+}

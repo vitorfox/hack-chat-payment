@@ -28,6 +28,19 @@
         <div class="chat-header">
           <h2 class="chat-name-user">Username</h2>
         </div>
+        <div class="payment-bar">
+          <div class="payment-header cf">
+            <h2 class="title">Pagamento</h2>
+            <button class="payment-bolinhas">bolinhas</button>
+          </div>
+          <div class="payment-content">
+            <div class="payment-wrapper cf">
+              <h3 class="payment-title">Valor: <span class="payment-price">R$ 300,00</span></h3>
+              <button class="payment-button" id='pay'>Pagar</button>
+            </div>
+            <p class="payment-rules">Ao finalizar seu pagamento, você concorda com os Termos de Uso do site.</p>
+          </div>
+        </div>
       
         <!-- Messages List -->
         <div class="chat-message">
@@ -37,7 +50,7 @@
         <form class="chat-input-box" id="message" action="">
             <div class="chat-input-wrapper">
                 <input class="chat-input-text" placeholder="Enter your message" id="m" autocomplete="off" /><button class="chat-input-submit">Send</button>
-                <button id="charge">Cobrar</button>
+                <button class="" id="charge">Cobrar</button>
             </div>
         </form>
       </div>

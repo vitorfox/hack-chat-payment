@@ -1,7 +1,8 @@
-import gulp from 'gulp';
-import sass from 'gulp-sass';
-import autoprefixer from 'gulp-autoprefixer';
-import sourcemaps from 'gulp-sourcemaps';
+import gulp             from 'gulp';
+import sass             from 'gulp-sass';
+import autoprefixer     from 'gulp-autoprefixer';
+import sourcemaps       from 'gulp-sourcemaps';
+import imagemin         from 'gulp-imagemin';
 
 // Paths
 const assets = {
@@ -17,6 +18,13 @@ gulp.task('sass', () => {
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest('dist/css'))
 });
+
+// Image Optimization
+gulp.task('imagemin', () =>
+    gulp.src('src/images/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('dist/images'))
+);
 
 // Watch
 gulp.task('watch', function () {

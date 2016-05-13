@@ -1,3 +1,14 @@
+.hide {
+  display: none; }
+
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table; }
+
+.cf:after {
+  clear: both; }
+
 .button-start {
   border: 0;
   display: block;
@@ -8,8 +19,58 @@
   font-size: 24px;
   color: #ffffff; }
 
-.hide {
-  display: none; }
+.payment-bar {
+  background: #ffffff; }
+
+.payment-header {
+  font-size: 14px;
+  display: block;
+  background: #ffffff;
+  position: relative;
+  padding: 10px;
+  border-bottom: 1px solid #898989; }
+
+.payment-header .title {
+  text-align: center;
+  font-size: 14px; }
+
+.payment-bolinhas {
+  color: #333;
+  position: absolute;
+  top: 10px;
+  right: 10px; }
+
+.payment-title {
+  font-size: 14px;
+  float: left;
+  padding-top: 5px; }
+
+.payment-content {
+  background: #ffffff;
+  padding: 10px; }
+
+.payment-wrapper {
+  margin-bottom: 5px; }
+
+.payment-button {
+  background: #39B54A;
+  float: right;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  width: 100px;
+  height: 30px;
+  vertical-align: middle; }
+
+.payment-price {
+  font-size: 18px;
+  font-weight: bold; }
+
+.payment-rules {
+  font-size: 12px;
+  text-align: center;
+  padding-top: 5px; }
 
 * {
   margin: 0;
@@ -50,29 +111,28 @@ body {
   max-width: 480px;
   width: 100%;
   margin: 0 auto;
-  height: 300px;
+  height: 450px;
   margin-top: 50px;
   position: relative;
   overflow: hidden; }
 
 .chat-header {
-  background: #ffffff;
-  padding: 10px 20px; }
+  background: #f78323;
+  padding: 10px;
+  color: #ffffff; }
 
 .chat-name-user {
   font-size: 14px;
   color: #grey-0; }
 
-.chat-message-list {
+.chat-message {
   overflow-y: auto;
-  max-height: 400px; }
+  height: 250px; }
 
 .chat-input-box {
   background: #bbbbbb;
-  padding: 3px;
-  width: 100%;
-  position: absolute;
-  bottom: 0; }
+  padding: 5px;
+  width: 100%; }
 
 .chat-input-wrapper {
   position: relative; }
@@ -94,10 +154,15 @@ body {
   text-indent: -9999px; }
 
 .message-bubble-wrapper {
-  float: right;
   margin: 10px;
   border-radius: 4px;
   padding: 10px 30px;
   background: #dedede; }
+
+.message-bubble-wrapper.receiver {
+  float: left; }
+
+.message-bubble-wrapper.sender {
+  float: right; }
 
 /*# sourceMappingURL=chat.css.map */
