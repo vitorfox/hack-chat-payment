@@ -15,7 +15,9 @@
       <div class="chat-header"></div>
       <ul id="messages"></ul>
         <form id="message" action="">
-            <input id="m" autocomplete="off" /><button>Send</button>
+            <input id="m" autocomplete="off" />
+            <button>Send</button>
+            <button id="charge">Cobrar</button>
         </form>
         <form id="nickname" action="">
             <input id="n" autocomplete="off" /><button>Nick</button>
@@ -30,12 +32,21 @@
             return false;
       });
 
+      $('#charge').click(function(){
+            socket.emit('send charge', { "amount": 500});
+            return false;
+      });
+
       $('#nickname').submit(function(){
             socket = io();
             socket.emit('set nickname', { "nickname": $('#n').val() });
             $('#nickname').hide();
             socket.on('chat message', function(msg){
                 $('#messages').append($('<li>').text(msg));
+            });
+            socket.on('charge message', function(msg){
+                var text = "Cobrança no valor de R$ " + msg.amount + " recebida.";
+                $('#messages').append($('<li class="charge">').text(text));
             });
             return false;
       });
