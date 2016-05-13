@@ -349,16 +349,20 @@ body {
   opacity: 0.8; }
 
 .message-bubble-wrapper {
-  margin: 3px 5px 0px 5px;
+  margin: 10px 10px 0px 10px;
   border-radius: 4px;
   padding: 10px 30px;
-  background: #dedede; }
+  background: #ff974b;
+  position: relative;
+  color: #ffffff; }
 
 .message-bubble-wrapper.receiver {
-  float: left; }
+  float: left;
+  text-align: left; }
 
 .message-bubble-wrapper.sender {
-  float: right; }
+  float: right;
+  text-align: right; }
 
 @media (max-width: 480px) {
   .chat-box {
