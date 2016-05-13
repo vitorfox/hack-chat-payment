@@ -1,6 +1,9 @@
 .hide {
   display: none; }
 
+.spacer {
+  margin-top: 150px !important; }
+
 .cf:before,
 .cf:after {
   content: " ";
@@ -223,6 +226,9 @@ body {
   font-size: 14px;
   color: #333;
   background: #e0e0e0 url("/dist/images/chat-bkg.png") repeat; }
+
+.start {
+  height: 100%; }
 
 .message-list {
   list-style-type: none;
