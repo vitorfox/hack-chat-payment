@@ -34,16 +34,16 @@ var socket = null;
         socket.on('charge sent message', function(msg){
             updateChargeDiv("<div class='loader'>Loading...</div>");
             setTimeout(function(){
-            var content = 'Cobrança enviada no valor de R$'+ msg.amount +',00';
+                var content = 'Cobrança enviada no valor de R$'+ msg.amount +',00';
                 updateChargeDiv(content);
             },3000);
         });
 
         function updateChargeDiv(content){
+         
             var text = '<div class="payment-bar">' +
                 '<div class="payment-header cf">'+
                 '    <h2 class="title">'+content+'</h2>'+
-                '    <button class="payment-bullets">Bullets</button>'+
                 '</div>'+
                 '</div>';
 
@@ -54,7 +54,6 @@ var socket = null;
         var text = '<div class="payment-bar">' +
             '<div class="payment-header cf">'+
             '    <h2 class="title">Você recebeu uma cobrança</h2>'+
-            '    <button class="payment-bullets">Bullets</button>'+
             '</div>'+
             '<div class="payment-content">'+
             '    <div class="payment-wrapper cf">'+
@@ -69,8 +68,7 @@ var socket = null;
         });
 
         socket.on('payment finished', function(msg){
-            console.log($('.payment-bar .payment-header .title'));
-            $('.payment-bar .payment-header .title').text(msg);
+            $('.payment-bar .payment-header .title').html(msg);
         });
   });
 
@@ -102,7 +100,7 @@ var socket = null;
 
   $("body").on("click", "#pay", function(e){
            e.preventDefault();
-           socket.emit('send payment', "Pagamento efetuado!");
+           socket.emit('send payment', "<span class='check-icon icon'>check-icon</span>Pagamento efetuado!");
      $('.payment-bar .payment-header .title').html("<div class='loader'>Loading...</div>");
            $('.payment-bar .payment-content').addClass("hide");
   });

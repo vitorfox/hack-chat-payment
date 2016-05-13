@@ -106,6 +106,20 @@ body {
     background: transparent url("/dist/images/chat-options.png") center no-repeat;
 }
 
+.check-icon {
+    color: #333;
+    position: absolute;
+    top: 8px;
+    left: 55px;
+    height: 25px;
+    width: 25px;
+    border: 0;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: transparent url("/dist/images/check.png") center no-repeat;
+    background-size: 100%;
+}
+
 .close-icon {
     color: #333;
     position: absolute;

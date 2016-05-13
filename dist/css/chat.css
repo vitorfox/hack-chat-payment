@@ -96,20 +96,8 @@
 .payment-header .title {
   text-align: center;
   font-size: 14px;
-  padding-top: 6px; }
-
-.payment-bullets {
-  color: #333;
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  height: 33px;
-  width: 33px;
-  border: 0;
-  border-radius: 100%;
-  text-indent: -9999px;
-  overflow: hidden;
-  background: transparent url("/dist/images/bullets.png") center no-repeat; }
+  padding-top: 6px;
+  padding-left: 15px; }
 
 .payment-title {
   font-size: 14px;
@@ -297,6 +285,19 @@ body {
   text-indent: -9999px;
   overflow: hidden;
   background: transparent url("/dist/images/chat-options.png") center no-repeat; }
+
+.check-icon {
+  color: #333;
+  position: absolute;
+  top: 8px;
+  left: 55px;
+  height: 25px;
+  width: 25px;
+  border: 0;
+  text-indent: -9999px;
+  overflow: hidden;
+  background: transparent url("/dist/images/check.png") center no-repeat;
+  background-size: 100%; }
 
 .close-icon {
   color: #333;
