@@ -27,21 +27,10 @@
       <div class="chat-box">
         <div class="chat-header">
           <h2 class="chat-name-user">Username</h2>
+           <input type="text" id="value"/>
+          <button id="charge-button" style="float:right">Cobrar</button>
         </div>
-        <div class="payment-bar">
-          <div class="payment-header cf">
-            <h2 class="title">Pagamento</h2>
-            <button class="payment-bolinhas">bolinhas</button>
-          </div>
-          <div class="payment-content">
-            <div class="payment-wrapper cf">
-              <h3 class="payment-title">Valor: <span class="payment-price">R$ 300,00</span></h3>
-              <button class="payment-button" id='pay'>Pagar</button>
-            </div>
-            <p class="payment-rules">Ao finalizar seu pagamento, você concorda com os Termos de Uso do site.</p>
-          </div>
-        </div>
-      
+        <div id="charge"></div> 
         <!-- Messages List -->
         <div class="chat-message">
           <ul class="message-list" id="messageList"></ul>
@@ -50,7 +39,6 @@
         <form class="chat-input-box" id="message" action="">
             <div class="chat-input-wrapper">
                 <input class="chat-input-text" placeholder="Enter your message" id="m" autocomplete="off" /><button class="chat-input-submit">Send</button>
-                <button id="charge" class="hide">Cobrar</button>
             </div>
         </form>
       </div>
@@ -89,15 +77,26 @@
 		});
 
 		socket.on('charge message', function(msg){
-
-			var text = "Cobrança no valor de R$ " + msg.amount + " recebida. <button id='pay'>Pagar</button>";
-			var messageBubble = '<li class="message-item"><div class="message-bubble-wrapper charge"><div class="message-bubble-text">' + text + '</div></div></li>';
-			$('#messageList').append(messageBubble);
+        var text = '<div class="payment-bar">' +
+            '<div class="payment-header cf">'+
+            '    <h2 class="title">Pagamento</h2>'+
+            '    <button class="payment-bolinhas">bolinhas</button>'+
+            '</div>'+
+            '<div class="payment-content">'+
+            '    <div class="payment-wrapper cf">'+
+            '    <h3 class="payment-title">Valor: <span class="payment-price">R$ '+msg.amount+',00</span></h3>'+
+            '    <button class="payment-button" id="pay">Pagar</button>'+
+            '    </div>'+
+            '    <p class="payment-rules">Ao finalizar seu pagamento, você concorda com os Termos de Uso do site.</p>'+
+            '</div>'+
+            '</div>';
+ 
+			$('#charge').html(text);
 		});
 
 		socket.on('payment finished', function(msg){
-			var messageBubble = '<li class="message-item"><div class="message-bubble-wrapper paid"><div class="message-bubble-text">' + msg + '</div></div></li>';
-			$('#messageList').append(messageBubble);
+            console.log($('.payment-bar .payment-header .title'));
+			$('.payment-bar .payment-header .title').text(msg);
 		});
       });
 
@@ -107,16 +106,28 @@
 			$('#m').val('');
       });
 
-      $('#charge').click(function(){
+      $('#charge-button').on("click",function(e){
+            e.preventDefault();
+            var value = $("#value").val();
+            socket.emit('send charge', { "amount": value });
 
-            socket.emit('send charge', { "amount": 500 });
-            return false;
+        var text = '<div class="payment-bar">' +
+            '<div class="payment-header cf">'+
+            '    <h2 class="title">Pagamento enviado! valor: R$'+ value +',00</h2>'+
+            '    <button class="payment-bolinhas">bolinhas</button>'+
+            '</div>'+
+            '</div>';
+ 
+			$('#charge').html(text);
       });
 
-    $("body").on("click", "#pay", function(e){
-        e.preventDefault();
-        socket.emit('send payment', "Pagamento efetuado com sucesso!");
-    });
+      $("body").on("click", "#pay", function(e){
+            e.preventDefault();
+            socket.emit('send payment', "Pagamento efetuado com sucesso!");
+
+			$('.payment-bar .payment-header .title').text("Pagamento realizado com sucesso!");
+			$('.payment-bar .payment-content .payment-button').addClass("hide");
+      });
 
     </script>
   </body>
