@@ -325,7 +325,7 @@ body {
   background: #f78323 url("/dist/images/send.png") center no-repeat; }
 
 .message-bubble-wrapper {
-  margin: 10px;
+  margin: 3px 5px 0px 5px;
   border-radius: 4px;
   padding: 10px 30px;
   background: #dedede; }

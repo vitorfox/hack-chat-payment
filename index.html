@@ -28,7 +28,7 @@
         <div class="chat-header">
           <span class="chat-icon">chat-icon</span>
           <h2 class="chat-name-user">Username</h2>
-          <button id="charge-chat" class="charge-icon">charge-icon</button>
+          <button id="charge-chat" class="charge-icon hide">charge-icon</button>
           <span class="options-icon">settings-icon</span>
           <span class="close-icon">close-icon</span>
 
@@ -65,9 +65,9 @@
     <script>
       var socket = null;
       $('.button-start').on("click", function(e){
-		e.preventDefault();
+		    e.preventDefault();
 
-		socket = io();
+		    socket = io();
 
 		var session_id = null;
 		socket.on('session info', function(data) {
@@ -76,8 +76,9 @@
 
 		if ($(this).val() == "seller") {
 			$("#charge-button").show();
+      $('#charge-chat').removeClass('hide');
 		}
-
+    $('.chat-name-user').text($(this).val());
 		$('.button-start').hide();
 
 		socket.emit('set nickname', { "nickname": $(this).val() });
@@ -94,16 +95,23 @@
 
 		socket.on('charge sent message', function(msg){
 
-			var text = '<div class="payment-bar">' +
-				'<div class="payment-header cf">'+
-				'    <h2 class="title">Cobrança enviada! valor: R$'+ msg.amount +',00</h2>'+
-				'    <button class="payment-bullets">Bullets</button>'+
-				'</div>'+
-				'</div>';
- 
-			$('#charge').html(text);
-
+      updateChargeDiv("<div class='loader'>Loading...</div>");
+      setTimeout(function(){
+        var content = 'Cobrança enviada! valor: R$'+ msg.amount +',00';
+        updateChargeDiv(content);
+      },3000);
 		});
+
+    function updateChargeDiv(content){
+      var text = '<div class="payment-bar">' +
+        '<div class="payment-header cf">'+
+        '    <h2 class="title">'+content+'</h2>'+
+        '    <button class="payment-bullets">Bullets</button>'+
+        '</div>'+
+        '</div>';
+ 
+      $('#charge').html(text);
+    }
 
 		socket.on('charge message', function(msg){
         var text = '<div class="payment-bar">' +
