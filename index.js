@@ -47,6 +47,9 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db) {
 
         socket.on('send charge', function(data) {
             console.log('on send charge', data);
+
+            io.sockets.connected[session_id].emit('charge sent message', data);
+
             users_online.forEach(function(obj, idx) {
                 if (obj.session_id !== session_id) {
                     io.sockets.connected[obj.session_id].emit('charge message', data);
