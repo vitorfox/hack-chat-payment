@@ -7,4 +7,10 @@
     border-radius: 4px;
     font-size: 24px;
     color: $grey-0;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.button-start:hover {
+    background: $primary-orange-hover;
 }

@@ -69,7 +69,13 @@
   background: #f78323;
   border-radius: 4px;
   font-size: 24px;
-  color: #ffffff; }
+  color: #ffffff;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s; }
+
+.button-start:hover {
+  background: #E06000; }
 
 .payment-bar {
   background: #ffffff; }
@@ -204,14 +210,18 @@
   padding: 0;
   box-sizing: border-box; }
 
+input:focus {
+  outline: none; }
+
+body,
+html {
+  height: 100%; }
+
 body {
   font-family: Helvetica, Arial;
   font-size: 14px;
   color: #333;
   background: #dedede; }
-
-.main-content {
-  padding: 20px; }
 
 .message-list {
   list-style-type: none;
@@ -241,12 +251,21 @@ body {
   height: auto;
   margin-top: 50px;
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  border: 1px solid #898989; }
 
 .chat-header {
   background: #f78323;
   padding: 10px;
   color: #ffffff; }
+
+.icon {
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s; }
+
+.icon:hover {
+  background-color: #E06000; }
 
 .chat-icon {
   color: #333;
@@ -256,7 +275,6 @@ body {
   height: 35px;
   width: 35px;
   border: 0;
-  border-radius: 100%;
   text-indent: -9999px;
   overflow: hidden;
   background: transparent url("/dist/images/chat-icon.png") center no-repeat; }
@@ -269,7 +287,6 @@ body {
   height: 35px;
   width: 35px;
   border: 0;
-  border-radius: 100%;
   text-indent: -9999px;
   overflow: hidden;
   background: transparent url("/dist/images/chat-options.png") center no-repeat; }
@@ -282,7 +299,6 @@ body {
   height: 35px;
   width: 35px;
   border: 0;
-  border-radius: 100%;
   text-indent: -9999px;
   overflow: hidden;
   background: transparent url("/dist/images/chat-close.png") center no-repeat; }
@@ -294,7 +310,8 @@ body {
 
 .chat-message {
   overflow-y: auto;
-  height: 250px; }
+  height: 250px;
+  background: #e0e0e0 url("/dist/images/chat-bkg.png") repeat; }
 
 .chat-input-box {
   background: #bbbbbb;
@@ -322,7 +339,14 @@ body {
   border-radius: 100%;
   text-indent: -9999px;
   overflow: hidden;
-  background: #f78323 url("/dist/images/send.png") center no-repeat; }
+  cursor: pointer;
+  background: #f78323 url("/dist/images/send.png") center no-repeat;
+  -webkit-transition: 0.5s;
+  transition: 0.5s; }
+
+.chat-input-submit:hover {
+  background-color: #E06000;
+  opacity: 0.8; }
 
 .message-bubble-wrapper {
   margin: 3px 5px 0px 5px;
@@ -335,5 +359,9 @@ body {
 
 .message-bubble-wrapper.sender {
   float: right; }
+
+@media (max-width: 480px) {
+  .chat-box {
+    max-width: 480px; } }
 
 /*# sourceMappingURL=chat.css.map */

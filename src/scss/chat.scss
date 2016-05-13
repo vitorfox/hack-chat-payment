@@ -13,6 +13,13 @@
   box-sizing: border-box;
 }
 
+input:focus {outline:none;}
+
+body,
+html {
+  height: 100%;
+}
+
 body {
   font-family: Helvetica, Arial;
   font-size: 14px;
@@ -21,10 +28,6 @@ body {
 }
 
 // MAIN CONTENT
-.main-content {
-  padding: 20px;
-}
-
 .message-list {
   list-style-type: none;
   margin: 0;
@@ -59,12 +62,22 @@ body {
   margin-top: 50px;
   position: relative;
   overflow: hidden;
+  border: 1px solid $grey-4;
 }
 
 .chat-header {
   background: $primary-orange;
   padding: 10px;
   color: $grey-0;
+}
+
+.icon {
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.icon:hover {
+  background-color: $primary-orange-hover;
 }
 
 .chat-icon {
@@ -75,7 +88,6 @@ body {
     height: 35px;
     width: 35px;
     border: 0;
-    border-radius: 100%;
     text-indent: -9999px;
     overflow: hidden;
     background: transparent url("/dist/images/chat-icon.png") center no-repeat;
@@ -89,7 +101,6 @@ body {
     height: 35px;
     width: 35px;
     border: 0;
-    border-radius: 100%;
     text-indent: -9999px;
     overflow: hidden;
     background: transparent url("/dist/images/chat-options.png") center no-repeat;
@@ -103,7 +114,6 @@ body {
     height: 35px;
     width: 35px;
     border: 0;
-    border-radius: 100%;
     text-indent: -9999px;
     overflow: hidden;
     background: transparent url("/dist/images/chat-close.png") center no-repeat;
@@ -118,6 +128,7 @@ body {
 .chat-message {
   overflow-y: auto;
   height: 250px;
+  background: #e0e0e0 url('/dist/images/chat-bkg.png') repeat;
 }
 
 .chat-input-box {
@@ -149,7 +160,14 @@ body {
   border-radius: 100%;
   text-indent: -9999px;
   overflow: hidden;
+  cursor: pointer;
   background: $primary-orange url("/dist/images/send.png") center no-repeat;
+  transition: 0.5s;
+}
+
+.chat-input-submit:hover {
+  background-color: $primary-orange-hover;
+  opacity: 0.8;
 }
 
 // MESSAGES
@@ -167,10 +185,10 @@ body {
   float: right;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 480px) {
 
-}
-
-@media (max-width: 1200px) {
+  .chat-box {
+    max-width: 480px;
+  }
 
 }

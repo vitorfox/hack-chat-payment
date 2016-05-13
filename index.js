@@ -11,6 +11,10 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db) {
         res.sendFile(__dirname + '/index.html');
     });
 
+    app.get('/dist/scripts/*', function(req, res){
+        res.sendFile(__dirname + req.path);
+    });
+
     app.get('/dist/images/*', function(req, res){
         res.sendFile(__dirname + req.path);
     });

@@ -6,9 +6,16 @@ import imagemin         from 'gulp-imagemin';
 
 // Paths
 const assets = {
-  css: ['src/scss/*.scss']
+  css: ['src/scss/*.scss'],
+  js: ['src/scripts/*.js']
 };
 
+// JS
+gulp.task('script', () => {
+    return gulp.src(assets.js)
+      .pipe(gulp.dest('dist/scripts'))
+});
+ 
 // Sass
 gulp.task('sass', () => {
     return gulp.src(assets.css)
