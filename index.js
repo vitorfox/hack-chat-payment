@@ -60,9 +60,7 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db) {
         socket.on('send payment', function(data) {
             payment.pay().then(function(){
                 users_online.forEach(function(obj, idx) {
-                    if (obj.session_id !== session_id) {
-                        io.sockets.connected[obj.session_id].emit('payment finished', data);
-                    }
+                    io.sockets.connected[obj.session_id].emit('payment finished', data);
                 });
             }).catch(function(){
                 console.log('Fail to pay!');
