@@ -2,9 +2,9 @@ module.exports = (function(){
   'use strict';
 
   var PaymentConf = {
-    api_key: "ak_test_J0NPYTr5cSyBoP4oe9yrtZWPZHJsU3",
-    cryp_key: "ek_test_CgsbshipppRGhvEZO6atIuEZv3Ijy9",
-    card_id: "card_cio4wv2e500ulx76diizcwfwm"
+    api_key: "ak_test_EA06bt85B8ZeikBx7DkJVtytbaPs0M",
+    cryp_key: "ek_test_SbnmKp5ewiX5wmU6LoLwcwbDd9gI9Y",
+    card_id: "card_cio4g99ob00tnx86dzlu9gr07"
   };
 
   var Payment = function(){};
