@@ -47,7 +47,17 @@ io.on('connection', function(socket){
         //     if (count == 0) {
         //         users.insert({ "nickname": data.nickname });
         //     }
-        users_online.push({ "nickname": data.nickname, "session_id": session_id });
+        var nicknameIsPresent = false;
+        for (var i = 0; i < users_online.length; i++) {
+            if (data.nickname == users_online[i].nickname) {
+                nicknameIsPresent = true;
+                users_online[i].session_id = session_id;
+            }
+        }
+
+        if (!nicknameIsPresent) {
+            users_online.push({ "nickname": data.nickname, "session_id": session_id });
+        }
         console.log(users_online);
         //});
     });
@@ -59,6 +69,7 @@ io.on('connection', function(socket){
 
         users_online.forEach(function(obj, idx) {
             if (obj.session_id !== session_id) {
+                console.log(obj.session_id);
                 io.sockets.connected[obj.session_id].emit('charge message', data);
             }
         });
