@@ -44,12 +44,25 @@
 
       $('#nickname').submit(function(){
             socket = io();
+
+            var session_id = null;
+            socket.on('session info', function(data) {
+                session_id = data.id;
+            });        
             socket.emit('set nickname', { "nickname": $('#n').val() });
 
             $('#nickname').hide();
 
-            socket.on('chat message', function(msg){
-                $('#messages').append($('<li>').text(msg));
+            socket.on('chat message', function(data){
+                var msg = data.message;
+                var li_class = "receiver";
+
+                console.log(session_id);
+
+                if (data.session_id == session_id) {
+                    li_class = "sender";
+                }
+                $('#messages').append($('<li class="'+ li_class +'">').text(msg));
             });
             socket.on('charge message', function(msg){
 

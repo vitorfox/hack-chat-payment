@@ -26,10 +26,14 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db) {
 
     io.on('connection', function(socket){
         var session_id = socket.id;
+
         socket.on('chat message', function(msg){
-            io.emit('chat message', msg);
+            io.emit('chat message', {"message": msg, "session_id": session_id});
         });
         socket.on('set nickname', function(data) {
+
+            io.sockets.connected[session_id].emit('session info', {"id" : session_id});
+
             console.log('nickname received', data.nickname);
             // var users = db.collection("users");
             // users.find({ "nickname": data.nickname }).count(function(err, count){
