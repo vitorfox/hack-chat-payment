@@ -76,6 +76,13 @@
 			$('#messageList').append(messageBubble);
 		});
 
+		socket.on('charge sent message', function(msg){
+
+			var text = "Cobrança no valor de R$ " + msg.amount + " enviada.";
+			var messageBubble = '<li class="message-item"><div class="message-bubble-wrapper charge"><div class="message-bubble-text">' + text + '</div></div></li>';
+			$('#messageList').append(messageBubble);
+		});
+
 		socket.on('charge message', function(msg){
         var text = '<div class="payment-bar">' +
             '<div class="payment-header cf">'+
