@@ -1,6 +1,12 @@
 // HACKATHON - CHAT PAYMENT
-@import "colors";
 
+@import "colors";
+@import "buttons";
+
+// HELPERS
+.hide {
+  display: none;
+}
 
 // RESET
 * {
@@ -16,51 +22,106 @@ body {
   background: $grey-2;
 }
 
-form {
-  background: $grey-3;
-  padding: 3px;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+// MAIN CONTENT
+.main-content {
+  padding: 20px;
 }
 
-form input {
-  border: 0;
-  padding: 10px;
-  width: 90%;
-  margin-right: 10px;
-}
-
-form button {
-  color: #fff;
-  width: 9%;
-  background: $grey-6;
-  border: none;
-  padding: 10px 20px;
-}
-
-#messages {
+.message-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-#messages li {
-  padding: 5px 10px;
+.message-item {
+    display: block;
+    width: 100%;
+    overflow: hidden;
 }
 
-#messages li:nth-child(odd) {
-  background: #eee;
+.header {
+  padding: 20px;
+  text-align: center;
+  background: $primary-purple;
+  width: 100%;
 }
 
-// .chat-box {
-//   background: $grey-4;
-//   width: 330px;
-//   max-width: 330px;
-//   width: 100%;
-//   margin: 0 auto;
-//   height: 200px;
-//   margin-top: 50px;
-//   border-radius: 4px;
-// }
+.header-title {
+  color: #fff;
+  font-weight: normal;
+}
+
+// CHAT
+.chat-box {
+  background: $grey-4;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  height: 300px;
+  margin-top: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.chat-header {
+  background: #ffffff;
+  padding: 10px 20px;
+}
+
+.chat-name-user {
+  font-size: 14px;
+  color: #grey-0;
+}
+
+.chat-message-list {
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.chat-input-box {
+  background: $grey-3;
+  padding: 3px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.chat-input-wrapper {
+  position: relative;
+}
+
+.chat-input-text {
+  border: 0;
+  padding: 10px 15px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.chat-input-submit {
+  position: absolute;
+  border: 0;
+  right: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: $primary-orange;
+  text-indent: -9999px;
+}
+
+// MESSAGES
+
+.message-bubble-wrapper {
+  float: right;
+  margin: 10px;
+  border-radius: 4px;
+  padding: 10px 30px;
+  background: $grey-2;
+}
+
+@media (max-width: 450px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}

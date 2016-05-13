@@ -17,3 +17,8 @@ gulp.task('sass', () => {
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest('dist/css'))
 });
+
+// Watch
+gulp.task('watch', function () {
+    return gulp.watch('src/scss/*.scss', ['sass']);
+});

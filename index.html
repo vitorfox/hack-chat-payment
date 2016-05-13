@@ -11,33 +11,63 @@
 
   </head>
   <body>
-    <div class="chat-box">
-      <div class="chat-header"></div>
-      <ul id="messages"></ul>
-        <form id="message" action="">
-            <input id="m" autocomplete="off" /><button>Send</button>
+    <header class="header">
+      <h1 class="header-title">Chat Payment</h1>
+    </header>
+
+    <main class="main-content">
+
+      <!-- Begin screen -->
+      <button class="button button-start">Buyer</button>
+      <button class="button button-start">Seller</button>
+      
+      <!-- /Begin screen -->    
+      
+      <!-- Chat box -->
+      <div class="chat-box">
+        <div class="chat-header">
+          <h2 class="chat-name-user">Username</h2>
+        </div>
+      
+        <!-- Messages List -->
+        <div class="chat-message">
+          <ul class="message-list" id="messageList"></ul>
+        </div>
+      
+        <form class="chat-input-box hide" id="message" action="">
+            <div class="chat-input-wrapper">
+              <input class="chat-input-text" placeholder="Enter your message" id="m" autocomplete="off" /><button class="chat-input-submit">Send</button>
+            </div>
         </form>
-        <form id="nickname" action="">
-            <input id="n" autocomplete="off" /><button>Nick</button>
+      
+        <form class="chat-input-box" id="nickname" action="">
+            <div class="chat-input-wrapper"> 
+              <input class="chat-input-text" placeholder="Choose your Nickname" id="n" autocomplete="off" /><button class="chat-input-submit">Submit</button>
+            </div>
         </form>
-    </div>
+      </div>
+      <!-- /Chat box -->
+
+    </main>
 
     <script>
       var socket = null;
       $('#message').submit(function(){
-            socket.emit('chat message', $('#m').val());
-            $('#m').val('');
-            return false;
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
       });
 
       $('#nickname').submit(function(){
-            socket = io();
-            socket.emit('set nickname', { "nickname": $('#n').val() });
-            $('#nickname').hide();
-            socket.on('chat message', function(msg){
-                $('#messages').append($('<li>').text(msg));
-            });
-            return false;
+        socket = io();
+        socket.emit('set nickname', { "nickname": $('#n').val() });
+        $('#nickname').hide();
+        $('#message').removeClass('hide');
+        socket.on('chat message', function(msg){
+          var messageBubble = '<li class="message-item"><div class="message-bubble-wrapper"><div class="message-bubble-text">' + msg + '</div></div></li>';
+          $('#messageList').append(messageBubble);
+        });
+        return false;
       });
 
     </script>
