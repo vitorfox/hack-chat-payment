@@ -78,9 +78,15 @@
 
 		socket.on('charge sent message', function(msg){
 
-			var text = "Cobrança no valor de R$ " + msg.amount + " enviada.";
-			var messageBubble = '<li class="message-item"><div class="message-bubble-wrapper charge"><div class="message-bubble-text">' + text + '</div></div></li>';
-			$('#messageList').append(messageBubble);
+			var text = '<div class="payment-bar">' +
+				'<div class="payment-header cf">'+
+				'    <h2 class="title">Cobrança enviada! valor: R$'+ msg.amount +',00</h2>'+
+				'    <button class="payment-bolinhas">bolinhas</button>'+
+				'</div>'+
+				'</div>';
+ 
+			$('#charge').html(text);
+
 		});
 
 		socket.on('charge message', function(msg){
@@ -117,22 +123,11 @@
             e.preventDefault();
             var value = $("#value").val();
             socket.emit('send charge', { "amount": value });
-
-        var text = '<div class="payment-bar">' +
-            '<div class="payment-header cf">'+
-            '    <h2 class="title">Pagamento enviado! valor: R$'+ value +',00</h2>'+
-            '    <button class="payment-bolinhas">bolinhas</button>'+
-            '</div>'+
-            '</div>';
- 
-			$('#charge').html(text);
       });
 
       $("body").on("click", "#pay", function(e){
-            e.preventDefault();
-            socket.emit('send payment', "Pagamento efetuado com sucesso!");
-
-			$('.payment-bar .payment-header .title').text("Pagamento realizado com sucesso!");
+			e.preventDefault();
+			socket.emit('send payment', "Pagamento efetuado com sucesso!");
 			$('.payment-bar .payment-content .payment-button').addClass("hide");
       });
 
