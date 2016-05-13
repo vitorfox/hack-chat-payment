@@ -31,24 +31,31 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db) {
         });
         socket.on('set nickname', function(data) {
             console.log('nickname received', data.nickname);
-            var users = db.collection("users");
-            users.find({ "nickname": data.nickname }).count(function(err, count){
-                if (count == 0) {
-                    users.insert({ "nickname": data.nickname });
-                }
-                users_online.push({ "nickname": data.nickname, "session_id": session_id });
-            });
+            // var users = db.collection("users");
+            // users.find({ "nickname": data.nickname }).count(function(err, count){
+            //     if (count == 0) {
+            //         users.insert({ "nickname": data.nickname });
+            //     }
+            users_online.push({ "nickname": data.nickname, "session_id": session_id });
+            console.log(users_online);
+            //});
         });
 
         socket.on('send charge', function(data) {
             console.log('on send charge', data);
-            io.emit('charge message', data);
+            users_online.forEach(function(obj, idx) {
+                if (obj.session_id !== session_id) {
+                    io.sockets.connected[obj.session_id].emit('charge message', data);
+                }
+            });
         });
 
         socket.on('send payment', function(data) {
-            if (payment.pay()) {
-                io.emit('paid message');
-            }
+            users_online.forEach(function(obj, idx) {
+                if (obj.session_id !== session_id) {
+                    io.sockets.connected[obj.session_id].emit('payment finished', data);
+                }
+            });
         });
 
         socket.on('disconnect', function () {

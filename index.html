@@ -33,20 +33,32 @@
       });
 
       $('#charge').click(function(){
-            socket.emit('send charge', { "amount": 500});
+            socket.emit('send charge', { "amount": 500 });
             return false;
       });
+
+    $("body").on("click", "#pay", function(e){
+        e.preventDefault();
+        socket.emit('send payment', "Pagamento efetuado com sucesso!");
+    });
 
       $('#nickname').submit(function(){
             socket = io();
             socket.emit('set nickname', { "nickname": $('#n').val() });
+
             $('#nickname').hide();
+
             socket.on('chat message', function(msg){
                 $('#messages').append($('<li>').text(msg));
             });
             socket.on('charge message', function(msg){
-                var text = "Cobrança no valor de R$ " + msg.amount + " recebida.";
-                $('#messages').append($('<li class="charge">').text(text));
+
+                var text = "Cobrança no valor de R$ " + msg.amount + " recebida. <button id='pay'>Pagar</button>";
+                $('#messages').append($('<li class="charge">').html(text));
+            });
+
+            socket.on('payment finished', function(msg){
+                $('#messages').append($('<li class="paid">').text(msg));
             });
             return false;
       });
