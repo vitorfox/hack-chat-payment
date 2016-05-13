@@ -9,13 +9,15 @@
     display: block;
     background: $grey-0;
     position: relative;
-    padding: 10px;
     border-bottom: 1px solid $grey-4;
+    padding: 5px;
+    height: 35px;
 }
 
 .payment-header .title {
     text-align: center;
     font-size: 14px;
+    padding-top: 4px;
 }
 
 .payment-bullets {
@@ -64,8 +66,85 @@
     font-size: 18px;
     font-weight: bold;
 }
+
 .payment-rules {
     font-size: 12px;
     text-align: center;
     padding-top: 5px;
+}
+
+// CHARGE
+.charge-icon {
+    position: absolute;
+    top: 0;
+    right: 85px;
+    height: 35px;
+    width: 35px;
+    border: 0;
+    border-radius: 100%;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: $primary-orange url("/dist/images/payment.png") center no-repeat;
+}
+
+.charge-box {
+    background: $grey-0;
+    border-radius: 4px;
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    color: $grey-6;
+}
+
+.charge-header {
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid $grey-5;
+}
+
+.charge-header .charge-arrow {
+    position: absolute;
+    top: -10px;
+    right: 82px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent $grey-0 transparent;
+    text-indent: -9999px;
+}
+
+.charge-title {
+    text-align: center;
+    font-size: 14px;
+}
+
+.charge-content {
+    padding: 10px;
+}
+
+.charge-value {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.charge-input-text {
+    padding: 6px;
+    font-size: 12px;
+    border: 0;
+    border: 1px solid $grey-5;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+
+.button-charge {
+    background: $primary-green;
+    float: right;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    width: 100px;
+    height: 30px;
+    vertical-align: middle;
 }

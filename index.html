@@ -28,10 +28,23 @@
         <div class="chat-header">
           <span class="chat-icon">chat-icon</span>
           <h2 class="chat-name-user">Username</h2>
+          <button id="charge-chat" class="charge-icon">charge-icon</button>
           <span class="options-icon">settings-icon</span>
           <span class="close-icon">close-icon</span>
-          <input type="text" id="value"/>
-          <button id="charge-button" style="float:right" class="hide">Cobrar</button>
+
+          <!-- Charge tooltip -->
+          <div class="charge-box hide">
+            <div class="charge-header">
+              <span class="charge-arrow">charge-arrow</span>
+              <h3 class="charge-title">Envie cobranças direto do chat!</h3>
+            </div> 
+            <div class="charge-content cf">
+              <span class="charge-value">Valor: </span><input class="charge-input-text" type="text" id="value"/>
+              <button class="button-charge" id="charge-button">Cobrar</button>              
+            </div>
+          </div>
+
+          <!-- /Charge tooltip -->
         </div>
         <div id="charge"></div> 
         <!-- Messages List -->
@@ -112,7 +125,7 @@
 
 		socket.on('payment finished', function(msg){
             console.log($('.payment-bar .payment-header .title'));
-			$('.payment-bar .payment-header .title').text(msg);
+			     $('.payment-bar .payment-header .title').text(msg);
 		});
       });
 
@@ -122,16 +135,31 @@
 			$('#m').val('');
       });
 
+      $('#charge-chat').on("click",function(e){
+            e.preventDefault();
+
+            if($('.charge-box').hasClass('hide')) {
+              $('.charge-box').removeClass('hide');
+            } else {
+              $('.charge-box').addClass('hide');
+            }
+            
+      });
+
+      
+
       $('#charge-button').on("click",function(e){
             e.preventDefault();
             var value = $("#value").val();
             socket.emit('send charge', { "amount": value });
+            $('.charge-box').addClass('hide');
       });
 
       $("body").on("click", "#pay", function(e){
-			e.preventDefault();
-			socket.emit('send payment', "Pagamento efetuado com sucesso!");
-			$('.payment-bar .payment-content .payment-button').addClass("hide");
+			   e.preventDefault();
+			   socket.emit('send payment', "Pagamento efetuado com sucesso!");
+         $('.payment-bar .payment-header .title').html("<div class='loader'>Loading...</div>");
+			   $('.payment-bar .payment-content').addClass("hide");
       });
 
     </script>

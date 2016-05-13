@@ -9,6 +9,58 @@
 .cf:after {
   clear: both; }
 
+.loader:before,
+.loader:after,
+.loader {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out; }
+
+.loader {
+  color: #39B54A;
+  font-size: 6px;
+  margin: -10px auto 0;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s; }
+
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s; }
+
+.loader:after {
+  left: 3.5em; }
+
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 0; }
+
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em; }
+  40% {
+    box-shadow: 0 2.5em 0 0; } }
+
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em; }
+  40% {
+    box-shadow: 0 2.5em 0 0; } }
+
 .button-start {
   border: 0;
   display: block;
@@ -27,12 +79,14 @@
   display: block;
   background: #ffffff;
   position: relative;
-  padding: 10px;
-  border-bottom: 1px solid #898989; }
+  border-bottom: 1px solid #898989;
+  padding: 5px;
+  height: 35px; }
 
 .payment-header .title {
   text-align: center;
-  font-size: 14px; }
+  font-size: 14px;
+  padding-top: 4px; }
 
 .payment-bullets {
   color: #333;
@@ -78,6 +132,72 @@
   font-size: 12px;
   text-align: center;
   padding-top: 5px; }
+
+.charge-icon {
+  position: absolute;
+  top: 0;
+  right: 85px;
+  height: 35px;
+  width: 35px;
+  border: 0;
+  border-radius: 100%;
+  text-indent: -9999px;
+  overflow: hidden;
+  background: #f78323 url("/dist/images/payment.png") center no-repeat; }
+
+.charge-box {
+  background: #ffffff;
+  border-radius: 4px;
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  color: #4a4a4a; }
+
+.charge-header {
+  position: relative;
+  padding: 10px;
+  border-bottom: 1px solid #6c6c6c; }
+
+.charge-header .charge-arrow {
+  position: absolute;
+  top: -10px;
+  right: 82px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #ffffff transparent;
+  text-indent: -9999px; }
+
+.charge-title {
+  text-align: center;
+  font-size: 14px; }
+
+.charge-content {
+  padding: 10px; }
+
+.charge-value {
+  font-size: 14px;
+  font-weight: bold; }
+
+.charge-input-text {
+  padding: 6px;
+  font-size: 12px;
+  border: 0;
+  border: 1px solid #6c6c6c;
+  border-radius: 2px;
+  margin-right: 10px; }
+
+.button-charge {
+  background: #39B54A;
+  float: right;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  width: 100px;
+  height: 30px;
+  vertical-align: middle; }
 
 * {
   margin: 0;
@@ -145,7 +265,7 @@ body {
   color: #333;
   position: absolute;
   top: 0;
-  right: 50px;
+  right: 45px;
   height: 35px;
   width: 35px;
   border: 0;

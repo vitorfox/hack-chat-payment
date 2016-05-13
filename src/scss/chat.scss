@@ -2,6 +2,7 @@
 
 @import "helpers";
 @import "colors";
+@import "loader";
 @import "buttons";
 @import "payment";
 
@@ -84,7 +85,7 @@ body {
     color: #333;
     position: absolute;
     top: 0;
-    right: 50px;
+    right: 45px;
     height: 35px;
     width: 35px;
     border: 0;
