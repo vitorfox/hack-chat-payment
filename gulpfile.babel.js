@@ -35,5 +35,5 @@ gulp.task('imagemin', () =>
 
 // Watch
 gulp.task('watch', function () {
-    return gulp.watch('src/scss/*.scss', ['sass']);
+    return gulp.watch('src/scss/*.scss', ['sass', 'imagemin', 'script']);
 });

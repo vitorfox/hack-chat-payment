@@ -24,7 +24,7 @@ body {
   font-family: Helvetica, Arial;
   font-size: 14px;
   color: #333;
-  background: $grey-2;
+  background: #e0e0e0 url('/dist/images/chat-bkg.png') repeat;
 }
 
 // MAIN CONTENT
@@ -54,15 +54,11 @@ body {
 
 // CHAT
 .chat-box {
-  background: $grey-4;
-  max-width: 480px;
   width: 100%;
   margin: 0 auto;
-  height: auto;
-  margin-top: 50px;
+  height: 100%;
   position: relative;
   overflow: hidden;
-  border: 1px solid $grey-4;
 }
 
 .chat-header {
@@ -127,14 +123,15 @@ body {
 
 .chat-message {
   overflow-y: auto;
-  height: 250px;
-  background: #e0e0e0 url('/dist/images/chat-bkg.png') repeat;
+  height: 100%;
 }
 
 .chat-input-box {
   background: $grey-3;
   padding: 5px;
   width: 100%;
+  position: fixed;
+  bottom: 0;
 }
 
 .chat-input-wrapper {
