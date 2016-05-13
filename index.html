@@ -28,7 +28,7 @@
         <div class="chat-header">
           <h2 class="chat-name-user">Username</h2>
            <input type="text" id="value"/>
-          <button id="charge-button" style="float:right">Cobrar</button>
+          <button id="charge-button" style="float:right" class="hide">Cobrar</button>
         </div>
         <div id="charge"></div> 
         <!-- Messages List -->
@@ -59,7 +59,7 @@
 		});
 
 		if ($(this).val() == "seller") {
-			$("#charge").show();
+			$("#charge-button").show();
 		}
 
 		$('.button-start').hide();
