@@ -34,7 +34,7 @@ var socket = null;
         socket.on('charge sent message', function(msg){
             updateChargeDiv("<div class='loader'>Loading...</div>");
             setTimeout(function(){
-            var content = 'Cobrança enviada! valor: R$'+ msg.amount +',00';
+            var content = 'Cobrança enviada no valor de R$'+ msg.amount +',00';
                 updateChargeDiv(content);
             },3000);
         });
@@ -53,7 +53,7 @@ var socket = null;
         socket.on('charge message', function(msg){
         var text = '<div class="payment-bar">' +
             '<div class="payment-header cf">'+
-            '    <h2 class="title">Pagamento</h2>'+
+            '    <h2 class="title">Você recebeu uma cobrança</h2>'+
             '    <button class="payment-bullets">Bullets</button>'+
             '</div>'+
             '<div class="payment-content">'+

@@ -9,7 +9,7 @@
     display: block;
     background: $grey-0;
     position: relative;
-    border-bottom: 1px solid $grey-4;
+    border-bottom: 1px solid $grey-8;
     padding: 5px;
     height: 35px;
 }
@@ -91,7 +91,8 @@
     background: $grey-0;
     border-radius: 4px;
     position: absolute;
-    right: 10px;
+    width: 100%;
+    left: 0;
     top: 40px;
     color: $grey-6;
     z-index: 9999;
@@ -100,13 +101,13 @@
 .charge-header {
     position: relative;
     padding: 10px;
-    border-bottom: 1px solid $grey-5;
+    border-bottom: 1px solid $grey-8;
 }
 
 .charge-header .charge-arrow {
     position: absolute;
     top: -10px;
-    right: 82px;
+    right: 92px;
     width: 0;
     height: 0;
     border-style: solid;
@@ -133,7 +134,7 @@
     padding: 6px;
     font-size: 12px;
     border: 0;
-    border: 1px solid $grey-5;
+    border: 1px solid $grey-8;
     border-radius: 2px;
     margin-right: 10px;
 }
