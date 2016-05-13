@@ -4,72 +4,74 @@ var socket = null;
 
         socket = io();
 
-    var session_id = null;
-    socket.on('session info', function(data) {
-        session_id = data.id;
-    });
+        var session_id = null;
+        socket.on('session info', function(data) {
+            session_id = data.id;
+        });
 
-    if ($(this).val() == "seller") {
-        $("#charge-button").show();
-  $('#charge-chat').removeClass('hide');
-    }
-$('.chat-name-user').text($(this).val());
-    $('.button-start').hide();
-
-    socket.emit('set nickname', { "nickname": $(this).val() });
-
-    socket.on('chat message', function(data){
-        var msg = data.message;
-        var li_class = "receiver";
-        if (data.session_id == session_id) {
-            li_class = "sender";
+        if ($(this).val() == "seller") {
+            $("#charge-button").show();
+            $('#charge-chat').removeClass('hide');
         }
-        var messageBubble = '<li class="message-item"><div class="message-bubble-wrapper '+li_class+'"><div class="message-bubble-text">' + msg + '</div></div></li>';
-        $('#messageList').append(messageBubble);
-    });
 
-    socket.on('charge sent message', function(msg){
+        $('.chat-name-user').text($(this).val());
+        $('.button-start').hide();
+        $('.header').addClass("hide");
+        $('.chat-box').removeClass('hide');
 
-  updateChargeDiv("<div class='loader'>Loading...</div>");
-  setTimeout(function(){
-    var content = 'Cobrança enviada! valor: R$'+ msg.amount +',00';
-    updateChargeDiv(content);
-  },3000);
-    });
+        socket.emit('set nickname', { "nickname": $(this).val() });
 
-function updateChargeDiv(content){
-  var text = '<div class="payment-bar">' +
-    '<div class="payment-header cf">'+
-    '    <h2 class="title">'+content+'</h2>'+
-    '    <button class="payment-bullets">Bullets</button>'+
-    '</div>'+
-    '</div>';
+        socket.on('chat message', function(data){
+            var msg = data.message;
+            var li_class = "receiver";
+            if (data.session_id == session_id) {
+                li_class = "sender";
+            }
+            var messageBubble = '<li class="message-item"><div class="message-bubble-wrapper '+li_class+'"><div class="message-bubble-text">' + msg + '</div></div></li>';
+            $('#messageList').append(messageBubble);
+        });
 
-  $('#charge').html(text);
-}
+        socket.on('charge sent message', function(msg){
+            updateChargeDiv("<div class='loader'>Loading...</div>");
+            setTimeout(function(){
+            var content = 'Cobrança enviada! valor: R$'+ msg.amount +',00';
+                updateChargeDiv(content);
+            },3000);
+        });
 
-    socket.on('charge message', function(msg){
-    var text = '<div class="payment-bar">' +
-        '<div class="payment-header cf">'+
-        '    <h2 class="title">Pagamento</h2>'+
-        '    <button class="payment-bullets">Bullets</button>'+
-        '</div>'+
-        '<div class="payment-content">'+
-        '    <div class="payment-wrapper cf">'+
-        '    <h3 class="payment-title">Valor: <span class="payment-price">R$ '+msg.amount+',00</span></h3>'+
-        '    <button class="payment-button" id="pay">Pagar</button>'+
-        '    </div>'+
-        '    <p class="payment-rules">Ao finalizar seu pagamento, você concorda com os Termos de Uso do site.</p>'+
-        '</div>'+
-        '</div>';
+        function updateChargeDiv(content){
+            var text = '<div class="payment-bar">' +
+                '<div class="payment-header cf">'+
+                '    <h2 class="title">'+content+'</h2>'+
+                '    <button class="payment-bullets">Bullets</button>'+
+                '</div>'+
+                '</div>';
 
-        $('#charge').html(text);
-    });
+            $('#charge').html(text);
+        }
 
-    socket.on('payment finished', function(msg){
-        console.log($('.payment-bar .payment-header .title'));
-             $('.payment-bar .payment-header .title').text(msg);
-    });
+        socket.on('charge message', function(msg){
+        var text = '<div class="payment-bar">' +
+            '<div class="payment-header cf">'+
+            '    <h2 class="title">Pagamento</h2>'+
+            '    <button class="payment-bullets">Bullets</button>'+
+            '</div>'+
+            '<div class="payment-content">'+
+            '    <div class="payment-wrapper cf">'+
+            '    <h3 class="payment-title">Valor: <span class="payment-price">R$ '+msg.amount+',00</span></h3>'+
+            '    <button class="payment-button" id="pay">Pagar</button>'+
+            '    </div>'+
+            '    <p class="payment-rules">Ao finalizar seu pagamento, você concorda com os Termos de Uso do site.</p>'+
+            '</div>'+
+            '</div>';
+
+            $('#charge').html(text);
+        });
+
+        socket.on('payment finished', function(msg){
+            console.log($('.payment-bar .payment-header .title'));
+            $('.payment-bar .payment-header .title').text(msg);
+        });
   });
 
   $('#message').on("submit", function(e){
