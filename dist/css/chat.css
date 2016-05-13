@@ -358,7 +358,8 @@ body {
 
 .message-bubble-wrapper.receiver {
   float: left;
-  text-align: left; }
+  text-align: left;
+  background: #E9967A; }
 
 .message-bubble-wrapper.sender {
   float: right;
