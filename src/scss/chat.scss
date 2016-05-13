@@ -54,7 +54,7 @@ body {
   max-width: 480px;
   width: 100%;
   margin: 0 auto;
-  height: 450px;
+  height: auto;
   margin-top: 50px;
   position: relative;
   overflow: hidden;
@@ -66,9 +66,52 @@ body {
   color: $grey-0;
 }
 
+.chat-icon {
+    color: #333;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    height: 35px;
+    width: 35px;
+    border: 0;
+    border-radius: 100%;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: transparent url("/dist/images/chat-icon.png") center no-repeat;
+}
+
+.options-icon {
+    color: #333;
+    position: absolute;
+    top: 0;
+    right: 50px;
+    height: 35px;
+    width: 35px;
+    border: 0;
+    border-radius: 100%;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: transparent url("/dist/images/chat-options.png") center no-repeat;
+}
+
+.close-icon {
+    color: #333;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: 35px;
+    width: 35px;
+    border: 0;
+    border-radius: 100%;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: transparent url("/dist/images/chat-close.png") center no-repeat;
+}
+
 .chat-name-user {
   font-size: 14px;
-  color: #grey-0;
+  color: $grey-0;
+  padding-left: 40px;
 }
 
 .chat-message {
@@ -88,20 +131,24 @@ body {
 
 .chat-input-text {
   border: 0;
-  padding: 10px 15px;
+  padding: 15px;
   width: 100%;
   font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid $grey-4;
 }
 
 .chat-input-submit {
   position: absolute;
-  border: 0;
-  right: 10px;
-  width: 35px;
+  top: 7px;
+  right: 20px;
   height: 35px;
-  border-radius: 50%;
-  background: $primary-orange;
+  width: 35px;
+  border: 0;
+  border-radius: 100%;
   text-indent: -9999px;
+  overflow: hidden;
+  background: $primary-orange url("/dist/images/send.png") center no-repeat;
 }
 
 // MESSAGES
