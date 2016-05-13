@@ -36,7 +36,10 @@
       
         <form class="chat-input-box hide" id="message" action="">
             <div class="chat-input-wrapper">
-              <input class="chat-input-text" placeholder="Enter your message" id="m" autocomplete="off" /><button class="chat-input-submit">Send</button>
+                <input class="chat-input-text" placeholder="Enter your message" id="m" autocomplete="off" /><button class="chat-input-submit">Send</button>
+                <input id="m" autocomplete="off" />
+                <button>Send</button>
+                <button id="charge">Cobrar</button>
             </div>
         </form>
       
@@ -58,16 +61,49 @@
         return false;
       });
 
+      $('#charge').click(function(){
+            socket.emit('send charge', { "amount": 500 });
+            return false;
+      });
+
+    $("body").on("click", "#pay", function(e){
+        e.preventDefault();
+        socket.emit('send payment', "Pagamento efetuado com sucesso!");
+    });
+
       $('#nickname').submit(function(){
-        socket = io();
-        socket.emit('set nickname', { "nickname": $('#n').val() });
-        $('#nickname').hide();
-        $('#message').removeClass('hide');
-        socket.on('chat message', function(msg){
-          var messageBubble = '<li class="message-item"><div class="message-bubble-wrapper"><div class="message-bubble-text">' + msg + '</div></div></li>';
-          $('#messageList').append(messageBubble);
-        });
-        return false;
+
+            socket = io();
+
+            var session_id = null;
+            socket.on('session info', function(data) {
+                session_id = data.id;
+            });        
+            socket.emit('set nickname', { "nickname": $('#n').val() });
+
+            $('#nickname').hide();
+
+            socket.on('chat message', function(data){
+                var msg = data.message;
+                var li_class = "receiver";
+                console.log(session_id);
+
+                if (data.session_id == session_id) {
+                    li_class = "sender";
+                }
+                var messageBubble = '<li class="message-item"><div class="message-bubble-wrapper '+li_class+'"><div class="message-bubble-text">' + msg + '</div></div></li>';
+                $('#messageList').append(messageBubble);
+            });
+            socket.on('charge message', function(msg){
+
+                var text = "Cobrança no valor de R$ " + msg.amount + " recebida. <button id='pay'>Pagar</button>";
+                $('#messages').append($('<li class="charge">').html(text));
+            });
+
+            socket.on('payment finished', function(msg){
+                $('#messages').append($('<li class="paid">').text(msg));
+            });
+            return false;
       });
 
     </script>
